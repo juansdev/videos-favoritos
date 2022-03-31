@@ -1,0 +1,52 @@
+<div class="container">
+  <!-- BARRA DE NAVEGACIÓN -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3">
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" [routerLink]="['/inicio']">
+        <img src="/assets/images/video.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        {{page_title}}
+      </a>
+    </nav>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto" *ngIf="identity">
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/inicio']">Mis videos <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['video-favorito/guardar']">Guardar favorito</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-right" *ngIf="!identity">
+        <ul class="navbar-nav navbar-right">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/iniciar_sesion']">Iniciar sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/registrarse']">Registrarse</a>
+          </li>
+        </ul>
+      </ul>
+      <ul class="navbar-nav navbar-right" *ngIf="identity">
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle btn btn-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{identity.name + " " + identity.surname}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['ajustes']">Ajustes</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['logout/1']">Cerrar sesión</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- FIN DE LA BARRA DE NAVEGACIÓN -->
+  <router-outlet></router-outlet>
+</div>
+<footer class="bg-dark w-100 m-0 text-center py-3 text-light h3">
+  Desarrollado por Juan Serrano
+</footer>
